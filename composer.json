@@ -1,16 +1,11 @@
 {
-    "_comment0": "this is how we add comments",
-    
-    "_comment1": "this defines the name of the package",
+  
     "name": "delak/phpmvc-framework",
    
-    "_comment2": "This section defines the way Composer should automatically load classes.",
     "autoload": {
         
         "_comment3": "Here, it uses the PSR-4 autoloading standard",
         "psr-4": {
-            
-            "_comment4": "the following line indicates that all classes with names starting with 'app\\' should be loaded from the root directory of the package.",
             "app\\": "./"
         }
     },
@@ -21,6 +16,7 @@
         }
     ],
     
-    "_comment5":"This section lists all the dependencies that this package requires. In this case",
-    "require": {}
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
 }
