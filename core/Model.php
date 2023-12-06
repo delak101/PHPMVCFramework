@@ -21,6 +21,7 @@ abstract /*to avoiding creating instance of the model*/class Model
     abstract public function rules(): array;
 
     public array $errors = [];
+
     public function validate()
     {
         foreach($this->rules() as $attribute => $rules){
@@ -53,7 +54,8 @@ abstract /*to avoiding creating instance of the model*/class Model
     public function addError(string $attribute, string $rule, $params=[])
     {
         $message = $this->errorMessages()[$rule] ?? '';
-        foreach($params as $key =>$value){
+        foreach($params as $key =>$value)
+        {
             $placeholder = '{' . $key . '}';
             $message = str_replace($placeholder, $value, $message);        
         }
