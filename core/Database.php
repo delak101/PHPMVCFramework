@@ -18,12 +18,21 @@ class Database
     public function applyMigrations()
     {
         $this->createMigrationsTable();
-        $this->getAppliedMigrations();
+        $appliedMigrations = $this->getAppliedMigrations();
+        
         $files = scandir(Application::$ROOT_DIR.'/migrations');
-        echo '<pre>';
-        var_dump($files);
-        echo '</pre>';
-        exit;
+        $toApplyMigrations = array_diff($files, $appliedMigrations);
+        foreach ($toApplyMigrations as $migration) {
+            if($migration === '.' || $migration === '..') {
+                continue;
+            }
+            require_once Application::$ROOT_DIR.'/migrations/'.$migration;
+            $className = pathinfo($migration, PATHINFO_FILENAME);
+            $instance = new $className();
+            echo "Applying migration $migration".PHP_EOL;
+            $instance->up();
+            echo "Applied $migration migration".PHP_EOL;
+        }
     }
 
     public function createMigrationsTable()
