@@ -2,6 +2,8 @@
 
 namespace app\core;
 use app\core\Router;
+use app\core\Response;
+use app\core\Database;
 
 class Application
 {
@@ -24,7 +26,6 @@ class Application
         $this->response = new Response();
         $this->router = new Router($this->request, $this->response);
         
-         
         $this->db = new Database($config['db']);
     }
     public function getController()

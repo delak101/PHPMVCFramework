@@ -6,7 +6,7 @@ use app\core\Application;
 //loads all the classes that are required by the application. 
 //this ensures that all classes can be easily located and used throughout the application.
 require_once __DIR__.'/../vendor/autoload.php';
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
 $config = [
