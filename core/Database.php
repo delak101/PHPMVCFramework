@@ -19,6 +19,11 @@ class Database
     {
         $this->createMigrationsTable();
         $this->getAppliedMigrations();
+        $files = scandir(Application::$ROOT_DIR.'/migrations');
+        echo '<pre>';
+        var_dump($files);
+        echo '</pre>';
+        exit;
     }
 
     public function createMigrationsTable()
